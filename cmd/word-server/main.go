@@ -10,7 +10,7 @@ import (
 	"net/http"
 	"os"
 
-	"github.com/sajari/word2vec"
+	"github.com/alexdanilov/word2vec"
 )
 
 var listen, modelPath string

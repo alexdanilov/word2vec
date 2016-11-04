@@ -94,6 +94,7 @@ func NewServer(c Coser) http.Handler {
 	mux.HandleFunc("/cos-n", ms.handleCosNQuery)
 	mux.HandleFunc("/cos", ms.handleCosQuery)
 	mux.HandleFunc("/coses", ms.handleCosesQuery)
+	mux.HandleFunc("/ping", ms.handlePing)
 
 	ms.ServeMux = mux
 	return ms
@@ -171,6 +172,11 @@ func (s *server) handleCosNQuery(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 	s.handleEval(q, w, r)
+}
+
+func (s *server) handlePing(w http.ResponseWriter, r *http.Request) {
+	w.WriteHeader(http.StatusOK)
+	w.Write([]byte("OK"))
 }
 
 // Client is type which implements Coser and evaluates Expr similarity queries
